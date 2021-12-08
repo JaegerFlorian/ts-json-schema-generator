@@ -78,7 +78,7 @@
     "vega-lite": "^5.1.1"
   },
   "scripts": {
-    "prepublishOnly": "yarn build",
+    "prepare": "yarn build",
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "eslint \"{src,test,factory}/**/*.ts\"",
