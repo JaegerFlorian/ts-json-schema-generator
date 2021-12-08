@@ -36,11 +36,7 @@ export type FormatterAugmentor = (
 export function createFormatter(config: Config, augmentor?: FormatterAugmentor): TypeFormatter {
     const chainTypeFormatter = new ChainTypeFormatter([]);
     const circularReferenceTypeFormatter = new CircularReferenceTypeFormatter(chainTypeFormatter);
-
-    if (augmentor) {
-        augmentor(chainTypeFormatter, circularReferenceTypeFormatter);
-    }
-    /*
+    
     chainTypeFormatter
         .addTypeFormatter(new AnnotatedTypeFormatter(circularReferenceTypeFormatter))
 
@@ -73,6 +69,9 @@ export function createFormatter(config: Config, augmentor?: FormatterAugmentor):
         .addTypeFormatter(new TupleTypeFormatter(circularReferenceTypeFormatter))
         .addTypeFormatter(new UnionTypeFormatter(circularReferenceTypeFormatter))
         .addTypeFormatter(new IntersectionTypeFormatter(circularReferenceTypeFormatter));
-    */
+    
+        if (augmentor) {
+            augmentor(chainTypeFormatter, circularReferenceTypeFormatter);
+        }
     return circularReferenceTypeFormatter;
 }
